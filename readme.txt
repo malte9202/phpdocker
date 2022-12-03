@@ -1,4 +1,4 @@
 First PHP project 
 
-Blog 
+Create a basic PHP blog w/ Docker setup 
 
