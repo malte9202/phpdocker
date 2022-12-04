@@ -1,19 +1,16 @@
-version: '2'
+version: '2.12.2'
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_server
-    command: -default-authentication-plugin=mysql_native_password
-    volumes:
-      - .:/application
+
+  db:
+    image: mysql
+    container_name: database
+    command: --default-authentication-plugin=mysql_native_password
     #restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=.sweetpwd.
-      - MYSQL_DATABASE=my_db
-      - MYSQL_USER=db_user
-      - MYSQL_PASSWORD=.mypwd
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "8802:3306"
+
   blog:
     container_name: php_apache
     image: php_img:latest
@@ -24,4 +21,4 @@ services:
     ports:
       - 8000:80
     depends_on:
-      - mysql
+      - db
